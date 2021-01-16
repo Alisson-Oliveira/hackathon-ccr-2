@@ -8,7 +8,7 @@ class createUser1610777249160 {
             name: 'users',
             columns: [
                 {
-                    name: 'id',
+                    name: '_id',
                     type: 'integer',
                     unsigned: true,
                     isPrimary: true,
