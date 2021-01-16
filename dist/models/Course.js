@@ -10,25 +10,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-let User = class User {
+let Course = class Course {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn('increment'),
     __metadata("design:type", Number)
-], User.prototype, "_id", void 0);
+], Course.prototype, "_id", void 0);
 __decorate([
     typeorm_1.Column(),
     __metadata("design:type", String)
-], User.prototype, "name", void 0);
+], Course.prototype, "title", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", Number)
+], Course.prototype, "amount", void 0);
 __decorate([
     typeorm_1.Column(),
     __metadata("design:type", String)
-], User.prototype, "email", void 0);
+], Course.prototype, "hours", void 0);
 __decorate([
     typeorm_1.Column(),
     __metadata("design:type", String)
-], User.prototype, "password", void 0);
-User = __decorate([
-    typeorm_1.Entity('users')
-], User);
-exports.default = User;
+], Course.prototype, "area", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], Course.prototype, "description", void 0);
+Course = __decorate([
+    typeorm_1.Entity('courses')
+], Course);
+exports.default = Course;

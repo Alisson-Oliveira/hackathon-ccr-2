@@ -10,25 +10,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-let User = class User {
+let Location = class Location {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn('increment'),
     __metadata("design:type", Number)
-], User.prototype, "_id", void 0);
+], Location.prototype, "_id", void 0);
 __decorate([
     typeorm_1.Column(),
     __metadata("design:type", String)
-], User.prototype, "name", void 0);
+], Location.prototype, "institution", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", Number)
+], Location.prototype, "latitude", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", Number)
+], Location.prototype, "longitude", void 0);
 __decorate([
     typeorm_1.Column(),
     __metadata("design:type", String)
-], User.prototype, "email", void 0);
+], Location.prototype, "hours", void 0);
 __decorate([
     typeorm_1.Column(),
     __metadata("design:type", String)
-], User.prototype, "password", void 0);
-User = __decorate([
-    typeorm_1.Entity('users')
-], User);
-exports.default = User;
+], Location.prototype, "reservation_location", void 0);
+Location = __decorate([
+    typeorm_1.Entity('locations')
+], Location);
+exports.default = Location;
