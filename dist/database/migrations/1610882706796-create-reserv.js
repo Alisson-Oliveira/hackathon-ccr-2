@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createTeacher1610816298642 = void 0;
+exports.createReserv1610882706796 = void 0;
 const typeorm_1 = require("typeorm");
-class createTeacher1610816298642 {
+class createReserv1610882706796 {
     async up(queryRunner) {
         await queryRunner.createTable(new typeorm_1.Table({
-            name: 'teachers',
+            name: 'reserves',
             columns: [
                 {
                     name: '_id',
@@ -16,22 +16,18 @@ class createTeacher1610816298642 {
                     generationStrategy: 'increment',
                 },
                 {
-                    name: 'name',
-                    type: 'varchar',
+                    name: 'localization_id',
+                    type: 'integer',
                 },
                 {
-                    name: 'email',
-                    type: 'varchar',
-                },
-                {
-                    name: 'password',
-                    type: 'varchar',
+                    name: 'user_id',
+                    type: 'integer',
                 }
             ]
         }));
     }
     async down(queryRunner) {
-        await queryRunner.dropTable('teachers');
+        await queryRunner.dropTable('reserves');
     }
 }
-exports.createTeacher1610816298642 = createTeacher1610816298642;
+exports.createReserv1610882706796 = createReserv1610882706796;

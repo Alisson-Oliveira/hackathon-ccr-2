@@ -1,21 +1,29 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import bcrypt from 'bcrypt';
-import User from '../models/User';
+import { getType } from '../utils/utils';
 
 export default { 
   async show(request: Request, response: Response)  {
-    const { email, password } = request.body;
+    const { email, password, type } = request.body;
 
-    const usersRepository = getRepository(User);
+    const typeRepository = getType(type);
+
+    if (!typeRepository) {
+      return response.status(401).send({ error: 'Type not found.' }); 
+    }
+
+    const usersRepository = getRepository(typeRepository);
 
     const user = await usersRepository.findOne({ email });
 
-    if (!user) 
+    if (!user) { 
       return response.status(401).send({ error: 'User not found.' });
+    }
 
-    if (!await bcrypt.compare(password, user.password))
+    if (!await bcrypt.compare(password, user.password)) {
       return response.status(401).send({ error: 'Invalid password.' });
+    }
 
     return response.status(201).json(user);  
   },
@@ -25,11 +33,18 @@ export default {
       const {
         name,
         email,
+        type
       } = request.body;
   
       const password = await bcrypt.hash(request.body.password, 10);
 
-      const usersRepository = getRepository(User);
+      const typeRepository = getType(type);
+
+      if (!typeRepository) {
+        return response.status(401).send({ error: 'Type not found.' }); 
+      }
+
+      const usersRepository = getRepository(typeRepository);
   
       const data = {
         name,

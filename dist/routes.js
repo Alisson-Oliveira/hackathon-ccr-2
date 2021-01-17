@@ -8,6 +8,7 @@ const routes = express_1.Router();
 const UsersControllers_1 = __importDefault(require("./controllers/UsersControllers"));
 const CoursesControllers_1 = __importDefault(require("./controllers/CoursesControllers"));
 const LocalizationControllers_1 = __importDefault(require("./controllers/LocalizationControllers"));
+const ReservesControllers_1 = __importDefault(require("./controllers/ReservesControllers"));
 routes.get('/', (request, response) => {
     return response.status(200).json({ message: 'Open Server' });
 });
@@ -26,4 +27,9 @@ routes.post('/localization/create', LocalizationControllers_1.default.create);
 routes.get('/localization/search/:search', LocalizationControllers_1.default.search);
 routes.put('/localization/reserv/:id', LocalizationControllers_1.default.reserv);
 routes.get('/localization/details/:id', LocalizationControllers_1.default.index);
+// Crud Reserves
+routes.post('/reserves/create', ReservesControllers_1.default.create);
+routes.get('/reserves', ReservesControllers_1.default.show);
+routes.get('/reserves/details/:id', ReservesControllers_1.default.index);
+routes.delete('/reserves/delete/:id', ReservesControllers_1.default.delete);
 exports.default = routes;

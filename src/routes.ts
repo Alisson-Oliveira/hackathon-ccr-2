@@ -5,6 +5,7 @@ const routes = Router();
 import UsersControllers from './controllers/UsersControllers';
 import CoursesControllers from './controllers/CoursesControllers';
 import LocalizationControllers from './controllers/LocalizationControllers';
+import ReservesControllers from './controllers/ReservesControllers';
 
 routes.get('/', (request, response) => {
   return response.status(200).json({ message: 'Open Server' });
@@ -27,5 +28,11 @@ routes.post('/localization/create', LocalizationControllers.create);
 routes.get('/localization/search/:search', LocalizationControllers.search);
 routes.put('/localization/reserv/:id', LocalizationControllers.reserv);
 routes.get('/localization/details/:id', LocalizationControllers.index);
+
+// Crud Reserves
+routes.post('/reserves/create', ReservesControllers.create);
+routes.get('/reserves', ReservesControllers.show);
+routes.get('/reserves/details/:id', ReservesControllers.index);
+routes.delete('/reserves/delete/:id', ReservesControllers.delete); 
 
 export default routes;

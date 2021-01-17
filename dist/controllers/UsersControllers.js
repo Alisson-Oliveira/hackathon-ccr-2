@@ -5,23 +5,33 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const bcrypt_1 = __importDefault(require("bcrypt"));
-const User_1 = __importDefault(require("../models/User"));
+const utils_1 = require("../utils/utils");
 exports.default = {
     async show(request, response) {
-        const { email, password } = request.body;
-        const usersRepository = typeorm_1.getRepository(User_1.default);
+        const { email, password, type } = request.body;
+        const typeRepository = utils_1.getType(type);
+        if (!typeRepository) {
+            return response.status(401).send({ error: 'Type not found.' });
+        }
+        const usersRepository = typeorm_1.getRepository(typeRepository);
         const user = await usersRepository.findOne({ email });
-        if (!user)
+        if (!user) {
             return response.status(401).send({ error: 'User not found.' });
-        if (!await bcrypt_1.default.compare(password, user.password))
+        }
+        if (!await bcrypt_1.default.compare(password, user.password)) {
             return response.status(401).send({ error: 'Invalid password.' });
+        }
         return response.status(201).json(user);
     },
     async create(request, response) {
         try {
-            const { name, email, } = request.body;
+            const { name, email, type } = request.body;
             const password = await bcrypt_1.default.hash(request.body.password, 10);
-            const usersRepository = typeorm_1.getRepository(User_1.default);
+            const typeRepository = utils_1.getType(type);
+            if (!typeRepository) {
+                return response.status(401).send({ error: 'Type not found.' });
+            }
+            const usersRepository = typeorm_1.getRepository(typeRepository);
             const data = {
                 name,
                 email,

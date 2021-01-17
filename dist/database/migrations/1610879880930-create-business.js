@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createTeacher1610816298642 = void 0;
+exports.createBusiness1610879880930 = void 0;
 const typeorm_1 = require("typeorm");
-class createTeacher1610816298642 {
+class createBusiness1610879880930 {
     async up(queryRunner) {
         await queryRunner.createTable(new typeorm_1.Table({
-            name: 'teachers',
+            name: 'businesses',
             columns: [
                 {
                     name: '_id',
@@ -31,7 +31,7 @@ class createTeacher1610816298642 {
         }));
     }
     async down(queryRunner) {
-        await queryRunner.dropTable('teachers');
+        await queryRunner.dropTable('businesses');
     }
 }
-exports.createTeacher1610816298642 = createTeacher1610816298642;
+exports.createBusiness1610879880930 = createBusiness1610879880930;
