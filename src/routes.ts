@@ -11,13 +11,17 @@ routes.get('/', (request, response) => {
   return response.status(200).json({ message: 'Open Server' });
 });
 
-// Só tava testando isso, mas funciona
+// SignIn & SignUp
 routes.post('/login', UsersControllers.show);
 routes.post('/register', UsersControllers.create);
+
+// Professor
+routes.get('/teachers/name/:id', UsersControllers.name);
 
 // Crud Curso
 routes.post('/courses/create', CoursesControllers.create);
 routes.get('/courses/search/:search', CoursesControllers.show);
+routes.get('/courses/area/:area', CoursesControllers.area);
 routes.get('/courses/details/:id', CoursesControllers.index);
 routes.put('/courses/edit/:id', CoursesControllers.edit);
 routes.delete('/courses/delete/:id', CoursesControllers.delete); 

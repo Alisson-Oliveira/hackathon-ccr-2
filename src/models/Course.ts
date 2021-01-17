@@ -19,4 +19,7 @@ export default class Course {
 
   @Column()
   description: string;
+
+  @Column()
+  teacher_id: number;
 }

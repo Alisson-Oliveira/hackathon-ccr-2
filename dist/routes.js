@@ -12,12 +12,15 @@ const ReservesControllers_1 = __importDefault(require("./controllers/ReservesCon
 routes.get('/', (request, response) => {
     return response.status(200).json({ message: 'Open Server' });
 });
-// Só tava testando isso, mas funciona
+// SignIn & SignUp
 routes.post('/login', UsersControllers_1.default.show);
 routes.post('/register', UsersControllers_1.default.create);
+// Professor
+routes.get('/teachers/name/:id', UsersControllers_1.default.name);
 // Crud Curso
 routes.post('/courses/create', CoursesControllers_1.default.create);
 routes.get('/courses/search/:search', CoursesControllers_1.default.show);
+routes.get('/courses/area/:area', CoursesControllers_1.default.area);
 routes.get('/courses/details/:id', CoursesControllers_1.default.index);
 routes.put('/courses/edit/:id', CoursesControllers_1.default.edit);
 routes.delete('/courses/delete/:id', CoursesControllers_1.default.delete);

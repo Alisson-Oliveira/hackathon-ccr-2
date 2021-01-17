@@ -7,6 +7,18 @@ const typeorm_1 = require("typeorm");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const utils_1 = require("../utils/utils");
 exports.default = {
+    async name(request, response) {
+        const { id } = request.params;
+        const typeRepository = utils_1.getType('teacher');
+        if (!typeRepository) {
+            return response.status(401).send({ error: 'Type not found.' });
+        }
+        const usersRepository = typeorm_1.getRepository(typeRepository);
+        const user = await usersRepository.findOne({
+            where: { _id: id }
+        });
+        return response.status(201).json(user === null || user === void 0 ? void 0 : user.name);
+    },
     async show(request, response) {
         const { email, password, type } = request.body;
         const typeRepository = utils_1.getType(type);

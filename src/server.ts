@@ -10,12 +10,6 @@ const app = express();
 
 dotenv.config();
 
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Methods", "");
-//   next();
-// });
-
 app.use(cors({
   origin: "*",
   methods: "GET, PUT, POST, DELETE"

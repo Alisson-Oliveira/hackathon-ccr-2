@@ -34,6 +34,10 @@ class createCourse1610815220834 {
                 {
                     name: 'description',
                     type: 'varchar'
+                },
+                {
+                    name: 'teacher_id',
+                    type: 'integer'
                 }
             ]
         }));

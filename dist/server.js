@@ -11,11 +11,6 @@ require("reflect-metadata");
 require("./database");
 const app = express_1.default();
 dotenv_1.default.config();
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Methods", "");
-//   next();
-// });
 app.use(cors_1.default({
     origin: "*",
     methods: "GET, PUT, POST, DELETE"

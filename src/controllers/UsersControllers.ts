@@ -4,6 +4,24 @@ import bcrypt from 'bcrypt';
 import { getType } from '../utils/utils';
 
 export default { 
+  async name(request: Request, response: Response)  {
+    const { id } = request.params;
+
+    const typeRepository = getType('teacher');
+
+    if (!typeRepository) {
+      return response.status(401).send({ error: 'Type not found.' }); 
+    }
+
+    const usersRepository = getRepository(typeRepository);
+
+    const user = await usersRepository.findOne({ 
+      where: { _id: id }
+    });
+
+    return response.status(201).json(user?.name);  
+  },
+
   async show(request: Request, response: Response)  {
     const { email, password, type } = request.body;
 

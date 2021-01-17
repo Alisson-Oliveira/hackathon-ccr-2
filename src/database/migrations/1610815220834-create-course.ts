@@ -32,6 +32,10 @@ export class createCourse1610815220834 implements MigrationInterface {
         {
           name: 'description',
           type: 'varchar'
+        },
+        {
+          name: 'teacher_id',
+          type: 'integer'
         }
       ]
     }))

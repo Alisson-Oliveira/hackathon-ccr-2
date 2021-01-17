@@ -36,6 +36,10 @@ __decorate([
     typeorm_1.Column(),
     __metadata("design:type", String)
 ], Course.prototype, "description", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", Number)
+], Course.prototype, "teacher_id", void 0);
 Course = __decorate([
     typeorm_1.Entity('courses')
 ], Course);

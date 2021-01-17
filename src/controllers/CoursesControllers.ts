@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 
 import Course from '../models/Course';
+import Teacher from '../models/Teacher';
 
 export default {   
   async index(request: Request, response: Response) {
@@ -30,15 +31,37 @@ export default {
 
       const courses = await getRepository(Course)
         .createQueryBuilder('courses')
-        .select('courses.title')
+        .select([
+          'courses.title', 
+          'courses.hours', 
+          'courses.area',
+          'courses.teacher_id'
+        ]) 
         .where('courses.title like :search', { search: `%${search}%` })
         .getManyAndCount();
-      
+
       return response.status(201).json(courses);
     } catch (error) {
       console.error('Error showing course - ' + error); 
 
       return response.status(401).json({ message: 'Error showing course' });    
+    }
+  },
+  
+  async area(request: Request, response: Response) {
+    try {
+      const { area } = request.params;
+
+      const localization = await getRepository(Course)
+        .createQueryBuilder('courses')
+        .where('courses.area like :area', { area })
+        .getManyAndCount();
+
+      return response.status(200).json(localization);
+    } catch (error) {
+      console.error('Error showing localization - ' + error); 
+
+      return response.status(400).json({ message: 'Error showing localization' });      
     }
   },
 
@@ -50,9 +73,18 @@ export default {
         hours,
         area,
         description,
+        teacher_id,
       } = request.body;
 
       const coursesRepository = getRepository(Course)
+
+      const teacher = await getRepository(Teacher).findOne({
+        where: { _id: teacher_id }
+      });
+
+      if (!teacher) {
+        return response.status(401).json({ message: 'Teacher Not Found' });
+      }
 
       const data = {
         title,
@@ -60,6 +92,7 @@ export default {
         hours,
         area,
         description,
+        teacher_id: teacher._id,
       }
   
       const course = coursesRepository.create(data);
@@ -98,6 +131,7 @@ export default {
         hours,
         area,
         description,
+        teacher_id,
       } = request.body;
 
       const courseRepository = getRepository(Course);
@@ -113,6 +147,7 @@ export default {
         hours,
         area,
         description,
+        teacher_id,
       };
 
       await courseRepository.save({ ...course, ...data });
