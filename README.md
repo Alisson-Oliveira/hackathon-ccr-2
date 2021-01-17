@@ -24,8 +24,8 @@ oportunidade de ter uma renda extra através do __compartilhamento__ de seus cur
 ### Equipe
 
 - Monique (Recursos Humanos)
-- Alisson (Engenharia/Desenvolvimento)
-- Igor (Engenharia/Desenvolvimento)
+- Alisson (Engenharia/Desenvolvimento) (Backend)
+- Igor (Engenharia/Desenvolvimento) (Frontend)
 - Rodrigo (Business)
 - Daislan (UX Design)
 - Henrique (Entusiasta em Educação)

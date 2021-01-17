@@ -3,6 +3,11 @@ import { getRepository } from 'typeorm';
 import User from '../models/User';
 
 export default {
+  /**
+   * @param request
+   * @param response 
+   * @returns todas as informações dos estudantes por aréa de atuação.
+   **/
   async area(request: Request, response: Response) {
     try {
       const { area } = request.params;
@@ -24,6 +29,11 @@ export default {
     }
   },
 
+  /**
+   * @param request
+   * @param response 
+   * @returns todas as informações dos estudantes por ordem decrescente dos seus pontos.
+   **/
   async points(request: Request, response: Response) {
     try {
       const users = await getRepository(User)

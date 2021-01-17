@@ -125,5 +125,5 @@ export default {
 
       return response.status(401).json({ message: 'Error creating user' });      
     }
-  },
+  }
 }
