@@ -3,7 +3,7 @@ import { getRepository } from 'typeorm';
 import bcrypt from 'bcrypt';
 import User from '../models/User';
 
-export default {
+export default { 
   async show(request: Request, response: Response)  {
     const { email, password } = request.body;
 

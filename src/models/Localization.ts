@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('locations')
-export default class Location {
+@Entity('localizations')
+export default class Localization {
   @PrimaryGeneratedColumn('increment')
   _id: number;
 
@@ -15,8 +15,11 @@ export default class Location {
   longitude: number;
 
   @Column()
-  hours: string;
+  schadule: string;
 
   @Column()
   reservation_location: string;
+
+  @Column()
+  available: boolean;
 }
