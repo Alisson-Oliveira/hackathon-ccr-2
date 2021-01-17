@@ -4,6 +4,11 @@ import bcrypt from 'bcrypt';
 import { getType } from '../utils/utils';
 
 export default { 
+  /**
+   * @param request
+   * @param response 
+   * @returns o nome do professor.
+   **/
   async name(request: Request, response: Response)  {
     const { id } = request.params;
 
@@ -19,9 +24,18 @@ export default {
       where: { _id: id }
     });
 
-    return response.status(201).json(user?.name);  
+    if (!user) {
+      return response.status(401).send({ error: 'Teacher not found.' }); 
+    }
+
+    return response.status(201).json(user.name);  
   },
 
+  /**
+   * @param request
+   * @param response 
+   * @returns as informações do usuário depois de efetuar o login.
+   **/  
   async show(request: Request, response: Response)  {
     const { email, password, type } = request.body;
 
@@ -46,6 +60,11 @@ export default {
     return response.status(201).json(user);  
   },
     
+  /**
+   * @param request
+   * @param response 
+   * @returns cria um novo aluno, professor ou empresa.
+   **/
   async create(request: Request, response: Response) {
     try {
       const {

@@ -4,6 +4,11 @@ import { getRepository } from 'typeorm';
 import Localization from '../models/Localization';
 
 export default {
+  /**
+   * @param request
+   * @param response 
+   * @returns uma localização com todas as informações.
+   **/
   async index(request: Request, response: Response) {
     try {
       const { id } = request.params;
@@ -20,6 +25,11 @@ export default {
     }
   },
   
+  /**
+   * @param request
+   * @param response 
+   * @returns todas as localizações com suas informações.
+   **/
   async show(request: Request, response: Response) {
     try {
       const localization = await getRepository(Localization)
@@ -34,6 +44,11 @@ export default {
     }
   },
   
+  /**
+   * @param request
+   * @param response 
+   * @returns cria um novo ponto de localização.
+   **/
   async create(request: Request, response: Response) {
     try {
       const {
@@ -65,6 +80,11 @@ export default {
     }
   },
 
+  /**
+   * @param request
+   * @param response 
+   * @returns localizações pesquisadas pelo nome da instituição.
+   **/
   async search(request: Request, response: Response) {
     try {
       const { search } = request.params;
@@ -83,6 +103,11 @@ export default {
     }
   },
 
+  /**
+   * @param request
+   * @param response 
+   * @returns uma menssagem com local reservado ou local disponível.
+   **/
   async reserv(request: Request, response: Response) {
     try {
       const { id } = request.params;

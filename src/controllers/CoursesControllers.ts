@@ -5,6 +5,11 @@ import Course from '../models/Course';
 import Teacher from '../models/Teacher';
 
 export default {   
+  /**
+   * @param request
+   * @param response 
+   * @returns Um curso com todas as informações. 
+   **/
   async index(request: Request, response: Response) {
     try {
       const { id } = request.params;
@@ -25,6 +30,11 @@ export default {
     }
   },
 
+  /**
+   * @param request
+   * @param response 
+   * @returns Um curso com as informações titulo, carga horária, Aréa de atuaçãoe id do professor. 
+   **/
   async show(request: Request, response: Response) {
     try {
       const { search } = request.params;
@@ -48,23 +58,33 @@ export default {
     }
   },
   
+  /**
+   * @param request
+   * @param response 
+   * @returns Todos os curso por aréa de atuação. 
+   **/
   async area(request: Request, response: Response) {
     try {
       const { area } = request.params;
 
-      const localization = await getRepository(Course)
+      const courses = await getRepository(Course)
         .createQueryBuilder('courses')
         .where('courses.area like :area', { area })
         .getManyAndCount();
 
-      return response.status(200).json(localization);
+      return response.status(200).json(courses);
     } catch (error) {
-      console.error('Error showing localization - ' + error); 
+      console.error('Error showing courses - ' + error); 
 
-      return response.status(400).json({ message: 'Error showing localization' });      
+      return response.status(400).json({ message: 'Error showing courses' });      
     }
   },
 
+  /**
+   * @param request
+   * @param response 
+   * @returns Um curso com todas as informações.
+   **/
   async create(request: Request, response: Response) {
     try {
       const {
@@ -107,6 +127,11 @@ export default {
     }
   },
 
+  /**
+   * @param request
+   * @param response 
+   * @returns Uma menssagem de delete.
+   **/
   async delete(request: Request, response: Response) {
     try {
       const { id } = request.params;
@@ -121,6 +146,11 @@ export default {
     }
   },
 
+  /**
+   * @param request
+   * @param response 
+   * @returns Uma menssagem de edição e o as informações do curso editado.
+   **/
   async edit(request: Request, response: Response) {
     try {
       const { id } = request.params;

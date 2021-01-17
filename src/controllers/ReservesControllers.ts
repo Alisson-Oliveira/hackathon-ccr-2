@@ -5,6 +5,11 @@ import Reserv from '../models/Reserv';
 import User from '../models/User';
 
 export default { 
+  /**
+   * @param request
+   * @param response 
+   * @returns todas as reservas por aluno.
+   **/
   async index(request: Request, response: Response) {
     try {
       const { id } = request.params;
@@ -22,6 +27,11 @@ export default {
     }
   },
 
+  /**
+   * @param request
+   * @param response 
+   * @returns todas as reservas con suas informações.
+   **/
   async show(request: Request, response: Response) {
     try {
       const reserves = await getRepository(Reserv)
@@ -36,6 +46,11 @@ export default {
     }
   },
 
+  /**
+   * @param request
+   * @param response 
+   * @returns cria uma nova reserva para o aluno.
+   **/
   async create(request: Request, response: Response) {
     try {
       const {
@@ -70,6 +85,11 @@ export default {
     }
   },
 
+  /**
+   * @param request
+   * @param response 
+   * @returns deleta a reserva do aluno.
+   **/
   async delete(request: Request, response: Response) {
     try {
       const { id } = request.params;
