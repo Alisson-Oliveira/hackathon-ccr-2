@@ -6,6 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const Localization_1 = __importDefault(require("../models/Localization"));
 exports.default = {
+    /**
+     * @param request
+     * @param response
+     * @returns uma localização com todas as informações.
+     **/
     async index(request, response) {
         try {
             const { id } = request.params;
@@ -19,6 +24,11 @@ exports.default = {
             return response.status(400).json({ message: 'Error showing localization' });
         }
     },
+    /**
+     * @param request
+     * @param response
+     * @returns todas as localizações com suas informações.
+     **/
     async show(request, response) {
         try {
             const localization = await typeorm_1.getRepository(Localization_1.default)
@@ -31,6 +41,11 @@ exports.default = {
             return response.status(400).json({ message: 'Error showing localization' });
         }
     },
+    /**
+     * @param request
+     * @param response
+     * @returns cria um novo ponto de localização.
+     **/
     async create(request, response) {
         try {
             const { institution, latitude, longitude, schadule, reservation_location, } = request.body;
@@ -51,6 +66,11 @@ exports.default = {
             return response.status(401).json({ message: 'Error creating localization' });
         }
     },
+    /**
+     * @param request
+     * @param response
+     * @returns localizações pesquisadas pelo nome da instituição.
+     **/
     async search(request, response) {
         try {
             const { search } = request.params;
@@ -66,6 +86,11 @@ exports.default = {
             return response.status(401).json({ message: 'Error searching localization' });
         }
     },
+    /**
+     * @param request
+     * @param response
+     * @returns uma menssagem com local reservado ou local disponível.
+     **/
     async reserv(request, response) {
         try {
             const { id } = request.params;

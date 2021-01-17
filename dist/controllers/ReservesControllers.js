@@ -7,6 +7,11 @@ const typeorm_1 = require("typeorm");
 const Reserv_1 = __importDefault(require("../models/Reserv"));
 const User_1 = __importDefault(require("../models/User"));
 exports.default = {
+    /**
+     * @param request
+     * @param response
+     * @returns todas as reservas por aluno.
+     **/
     async index(request, response) {
         try {
             const { id } = request.params;
@@ -21,6 +26,11 @@ exports.default = {
             return response.status(400).json({ message: 'Error showing reserves' });
         }
     },
+    /**
+     * @param request
+     * @param response
+     * @returns todas as reservas con suas informações.
+     **/
     async show(request, response) {
         try {
             const reserves = await typeorm_1.getRepository(Reserv_1.default)
@@ -33,6 +43,11 @@ exports.default = {
             return response.status(400).json({ message: 'Error showing reserves' });
         }
     },
+    /**
+     * @param request
+     * @param response
+     * @returns cria uma nova reserva para o aluno.
+     **/
     async create(request, response) {
         try {
             const { localization_id, user_id } = request.body;
@@ -56,6 +71,11 @@ exports.default = {
             return response.status(401).json({ message: 'Error creating reserv' });
         }
     },
+    /**
+     * @param request
+     * @param response
+     * @returns deleta a reserva do aluno.
+     **/
     async delete(request, response) {
         try {
             const { id } = request.params;

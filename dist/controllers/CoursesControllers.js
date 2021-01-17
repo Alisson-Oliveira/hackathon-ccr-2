@@ -7,6 +7,11 @@ const typeorm_1 = require("typeorm");
 const Course_1 = __importDefault(require("../models/Course"));
 const Teacher_1 = __importDefault(require("../models/Teacher"));
 exports.default = {
+    /**
+     * @param request
+     * @param response
+     * @returns Um curso com todas as informações.
+     **/
     async index(request, response) {
         try {
             const { id } = request.params;
@@ -23,6 +28,11 @@ exports.default = {
             return response.status(401).json({ message: 'Error showing course' });
         }
     },
+    /**
+     * @param request
+     * @param response
+     * @returns Um curso com as informações titulo, carga horária, Aréa de atuaçãoe id do professor.
+     **/
     async show(request, response) {
         try {
             const { search } = request.params;
@@ -43,20 +53,30 @@ exports.default = {
             return response.status(401).json({ message: 'Error showing course' });
         }
     },
+    /**
+     * @param request
+     * @param response
+     * @returns Todos os curso por aréa de atuação.
+     **/
     async area(request, response) {
         try {
             const { area } = request.params;
-            const localization = await typeorm_1.getRepository(Course_1.default)
+            const courses = await typeorm_1.getRepository(Course_1.default)
                 .createQueryBuilder('courses')
                 .where('courses.area like :area', { area })
                 .getManyAndCount();
-            return response.status(200).json(localization);
+            return response.status(200).json(courses);
         }
         catch (error) {
-            console.error('Error showing localization - ' + error);
-            return response.status(400).json({ message: 'Error showing localization' });
+            console.error('Error showing courses - ' + error);
+            return response.status(400).json({ message: 'Error showing courses' });
         }
     },
+    /**
+     * @param request
+     * @param response
+     * @returns Um curso com todas as informações.
+     **/
     async create(request, response) {
         try {
             const { title, amount, hours, area, description, teacher_id, } = request.body;
@@ -84,6 +104,11 @@ exports.default = {
             return response.status(401).json({ message: 'Error creating course' });
         }
     },
+    /**
+     * @param request
+     * @param response
+     * @returns Uma menssagem de delete.
+     **/
     async delete(request, response) {
         try {
             const { id } = request.params;
@@ -95,6 +120,11 @@ exports.default = {
             return response.status(401).json({ message: 'Error deleting course' });
         }
     },
+    /**
+     * @param request
+     * @param response
+     * @returns Uma menssagem de edição e o as informações do curso editado.
+     **/
     async edit(request, response) {
         try {
             const { id } = request.params;

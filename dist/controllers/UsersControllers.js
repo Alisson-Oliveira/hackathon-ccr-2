@@ -7,6 +7,11 @@ const typeorm_1 = require("typeorm");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const utils_1 = require("../utils/utils");
 exports.default = {
+    /**
+     * @param request
+     * @param response
+     * @returns o nome do professor.
+     **/
     async name(request, response) {
         const { id } = request.params;
         const typeRepository = utils_1.getType('teacher');
@@ -17,8 +22,16 @@ exports.default = {
         const user = await usersRepository.findOne({
             where: { _id: id }
         });
-        return response.status(201).json(user === null || user === void 0 ? void 0 : user.name);
+        if (!user) {
+            return response.status(401).send({ error: 'Teacher not found.' });
+        }
+        return response.status(201).json(user.name);
     },
+    /**
+     * @param request
+     * @param response
+     * @returns as informações do usuário depois de efetuar o login.
+     **/
     async show(request, response) {
         const { email, password, type } = request.body;
         const typeRepository = utils_1.getType(type);
@@ -35,6 +48,11 @@ exports.default = {
         }
         return response.status(201).json(user);
     },
+    /**
+     * @param request
+     * @param response
+     * @returns cria um novo aluno, professor ou empresa.
+     **/
     async create(request, response) {
         try {
             const { name, email, type } = request.body;
