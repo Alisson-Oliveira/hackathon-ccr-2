@@ -9,6 +9,7 @@ const UsersControllers_1 = __importDefault(require("./controllers/UsersControlle
 const CoursesControllers_1 = __importDefault(require("./controllers/CoursesControllers"));
 const LocalizationControllers_1 = __importDefault(require("./controllers/LocalizationControllers"));
 const ReservesControllers_1 = __importDefault(require("./controllers/ReservesControllers"));
+const StudentControllers_1 = __importDefault(require("./controllers/StudentControllers"));
 routes.get('/', (request, response) => {
     return response.status(200).json({ message: 'Open Server' });
 });
@@ -17,6 +18,9 @@ routes.post('/login', UsersControllers_1.default.show);
 routes.post('/register', UsersControllers_1.default.create);
 // Professor
 routes.get('/teachers/name/:id', UsersControllers_1.default.name);
+// Aluno
+routes.get('/students/area/:area', StudentControllers_1.default.area);
+routes.get('/students/points/desc', StudentControllers_1.default.points);
 // Crud Curso
 routes.post('/courses/create', CoursesControllers_1.default.create);
 routes.get('/courses/search/:search', CoursesControllers_1.default.show);

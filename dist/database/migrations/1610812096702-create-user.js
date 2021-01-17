@@ -26,6 +26,14 @@ class createUser1610777249160 {
                 {
                     name: 'password',
                     type: 'varchar'
+                },
+                {
+                    name: 'area',
+                    type: 'varchar',
+                },
+                {
+                    name: 'points',
+                    type: 'float'
                 }
             ],
         }));

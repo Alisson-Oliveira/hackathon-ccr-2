@@ -6,6 +6,7 @@ import UsersControllers from './controllers/UsersControllers';
 import CoursesControllers from './controllers/CoursesControllers';
 import LocalizationControllers from './controllers/LocalizationControllers';
 import ReservesControllers from './controllers/ReservesControllers';
+import StudentControllers from './controllers/StudentControllers';
 
 routes.get('/', (request, response) => {
   return response.status(200).json({ message: 'Open Server' });
@@ -17,6 +18,10 @@ routes.post('/register', UsersControllers.create);
 
 // Professor
 routes.get('/teachers/name/:id', UsersControllers.name);
+
+// Aluno
+routes.get('/students/area/:area', StudentControllers.area);
+routes.get('/students/points/desc', StudentControllers.points);
 
 // Crud Curso
 routes.post('/courses/create', CoursesControllers.create);

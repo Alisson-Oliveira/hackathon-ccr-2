@@ -28,6 +28,14 @@ __decorate([
     typeorm_1.Column(),
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], User.prototype, "area", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", Number)
+], User.prototype, "points", void 0);
 User = __decorate([
     typeorm_1.Entity('users')
 ], User);

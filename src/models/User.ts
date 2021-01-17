@@ -13,4 +13,10 @@ export default class User {
 
   @Column()
   password: string;
+
+  @Column()
+  area: string;
+
+  @Column()
+  points: number;
 }
