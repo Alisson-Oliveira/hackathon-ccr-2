@@ -34,6 +34,14 @@ class createUser1610777249160 {
                 {
                     name: 'points',
                     type: 'float'
+                },
+                {
+                    name: 'course',
+                    type: 'varchar',
+                },
+                {
+                    name: 'age',
+                    type: 'integer',
                 }
             ],
         }));

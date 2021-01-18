@@ -19,4 +19,10 @@ export default class User {
 
   @Column()
   points: number;
+
+  @Column()
+  course: string;
+
+  @Column()
+  age: number;
 }

@@ -6,6 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const User_1 = __importDefault(require("../models/User"));
 exports.default = {
+    /**
+     * @param request
+     * @param response
+     * @returns todas as informações dos estudantes por aréa de atuação.
+     **/
     async area(request, response) {
         try {
             const { area } = request.params;
@@ -23,6 +28,11 @@ exports.default = {
             return response.status(400).json({ message: 'Error showing studens' });
         }
     },
+    /**
+     * @param request
+     * @param response
+     * @returns todas as informações dos estudantes por ordem decrescente dos seus pontos.
+     **/
     async points(request, response) {
         try {
             const users = await typeorm_1.getRepository(User_1.default)

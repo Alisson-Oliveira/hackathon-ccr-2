@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const utils_1 = require("../utils/utils");
+const Course_1 = __importDefault(require("../models/Course"));
 exports.default = {
     /**
      * @param request
@@ -60,6 +61,20 @@ exports.default = {
             return response.status(401).json({ message: 'Error showing user' });
         }
     },
+    async courses(request, response) {
+        try {
+            const { id } = request.params;
+            const courses = await typeorm_1.getRepository(Course_1.default)
+                .createQueryBuilder('courses')
+                .where('courses.teacher_id = :id', { id })
+                .getManyAndCount();
+            return response.status(200).json(courses);
+        }
+        catch (error) {
+            console.error('Error showing courses - ' + error);
+            return response.status(401).json({ message: 'Error showing courses' });
+        }
+    },
     /**
      * @param request
      * @param response
@@ -67,7 +82,7 @@ exports.default = {
      **/
     async create(request, response) {
         try {
-            const { name, email, type, area, points, } = request.body;
+            const { name, email, type, area, points, course, age, } = request.body;
             const password = await bcrypt_1.default.hash(request.body.password, 10);
             const typeRepository = utils_1.getType(type);
             if (!typeRepository) {
@@ -82,6 +97,8 @@ exports.default = {
                     password,
                     area,
                     points,
+                    course,
+                    age,
                 };
             }
             else {
@@ -99,5 +116,5 @@ exports.default = {
             console.error('Error creating user - ' + error);
             return response.status(401).json({ message: 'Error creating user' });
         }
-    },
+    }
 };

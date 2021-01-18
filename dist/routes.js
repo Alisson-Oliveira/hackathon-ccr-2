@@ -18,6 +18,7 @@ routes.post('/login', UsersControllers_1.default.show);
 routes.post('/register', UsersControllers_1.default.create);
 // Professor
 routes.get('/teachers/name/:id', UsersControllers_1.default.name);
+routes.get('/teachers/courses/:id', UsersControllers_1.default.courses);
 // Aluno
 routes.get('/students/area/:area', StudentControllers_1.default.area);
 routes.get('/students/points/desc', StudentControllers_1.default.points);

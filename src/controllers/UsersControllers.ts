@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import bcrypt from 'bcrypt';
 import { getType } from '../utils/utils';
+import Course from '../models/Course';
 
 export default { 
   /**
@@ -71,7 +72,24 @@ export default {
       return response.status(401).json({ message: 'Error showing user' }); 
     }
   },
-    
+  
+  async courses(request: Request, response: Response) {
+    try {
+      const { id } = request.params;
+
+      const courses = await getRepository(Course)
+        .createQueryBuilder('courses')
+        .where('courses.teacher_id = :id', { id })
+        .getManyAndCount();
+
+      return response.status(200).json(courses);
+    } catch (error) {
+      console.error('Error showing courses - ' + error); 
+
+      return response.status(401).json({ message: 'Error showing courses' }); 
+    }
+  },
+
   /**
    * @param request
    * @param response 
@@ -85,6 +103,8 @@ export default {
         type,
         area,
         points,
+        course,
+        age,
       } = request.body;
   
       const password = await bcrypt.hash(request.body.password, 10);
@@ -106,6 +126,8 @@ export default {
           password,
           area,
           points,
+          course,
+          age,
         }
       } else {
         data = {

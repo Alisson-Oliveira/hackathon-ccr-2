@@ -36,6 +36,14 @@ __decorate([
     typeorm_1.Column(),
     __metadata("design:type", Number)
 ], User.prototype, "points", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], User.prototype, "course", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", Number)
+], User.prototype, "age", void 0);
 User = __decorate([
     typeorm_1.Entity('users')
 ], User);

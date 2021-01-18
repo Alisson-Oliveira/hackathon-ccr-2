@@ -33,6 +33,14 @@ export class createUser1610777249160 implements MigrationInterface {
         {
           name: 'points',
           type: 'float'
+        },
+        {
+          name: 'course',
+          type: 'varchar',
+        },
+        {
+          name: 'age',
+          type: 'integer',
         }
       ],
     }))

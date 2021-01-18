@@ -18,6 +18,7 @@ routes.post('/register', UsersControllers.create);
 
 // Professor
 routes.get('/teachers/name/:id', UsersControllers.name);
+routes.get('/teachers/courses/:id', UsersControllers.courses);
 
 // Aluno
 routes.get('/students/area/:area', StudentControllers.area);
