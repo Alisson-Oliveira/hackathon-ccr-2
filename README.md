@@ -12,6 +12,7 @@ oportunidade de ter uma renda extra através do __compartilhamento__ de seus cur
 ### Backend
 
 - Express
+- Node JS
 - Typescript
 - Javascript
 - Typeorm
